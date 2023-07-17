@@ -2,6 +2,6 @@
 
 {% block content%}
 <a href="{% url 'blog:edit' post_id=post_id %}">수정</a>
-{{ post_title }}
-{{ post_content }}
+<p>제목: {{ post_title }}</p>
+<p>내용: {{ post_content }}</p>
 {% endblock %}
