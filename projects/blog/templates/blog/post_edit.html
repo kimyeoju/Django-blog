@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ form.as_p }}
+<form action="{% url 'blog:edit' post_id=post.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value='작성'>
+</form>
+{% endblock %}

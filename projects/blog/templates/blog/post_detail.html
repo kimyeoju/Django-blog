@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<a href="{% url 'blog:edit' post_id=post_id %}">수정</a>
+{{ post_title }}
+{{ post_content }}
+{% endblock %}
