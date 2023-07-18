@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content%}
-<a href="{% url 'blog:edit' post_id=post_id %}">수정</a>
+<h1>
+    {{ title }}
+</h1>
+<!-- 글 수정버튼 -->
+<a href="{% url 'blog:edit' post_id=id %}">수정</a>
 <p>제목: {{ post_title }}</p>
 <p>내용: {{ post_content }}</p>
+<p>작성일: {{ post_created_at }}</p>
+<!-- 글 삭제버튼 -->
+<form action="{% url 'blog:delete' post_id=id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="삭제">
+</form>
 {% endblock %}

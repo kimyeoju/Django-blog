@@ -3,7 +3,7 @@ from django.views import View
 from .models import Post
 from .forms import PostForm
 
-# Create your views here.
+# 글 목록 조회
 class Index(View):
     def get(self, request):
         post = Post.objects.all()
@@ -15,6 +15,7 @@ class Index(View):
         return render(request, 'blog/post_list.html', context)
 
 
+# 글 작성
 class Write(View):
     def get(self, request):
         form = PostForm()
@@ -25,18 +26,20 @@ class Write(View):
         return render(request, 'blog/post_form.html', context)
     def post(self,request):
         form = PostForm(request.POST)
-        
         if form.is_valid():
             post = form.save()
             return redirect('blog:list')
 
 
+# 글 상세 조회
 class DetailView(View):
     def get(self, request, post_id):
         post = Post.objects.get(id=post_id)
+        # detail 객체 id=post_id로 선언
         context = {
             'title': 'Blog',
-            'post_id': post_id,
+            'id': post_id,
+            # 템플릿 안에서는 id라는 변수로 사용
             'post_title': post.title,
             'post_content': post.content,
             'post_created_at': post.created_at
@@ -44,7 +47,7 @@ class DetailView(View):
         return render(request, 'blog/post_detail.html', context)
         
 
-
+# 글 수정
 class Update(View):
     def get(self,request, post_id):
         post = get_object_or_404(Post, id=post_id)
@@ -69,10 +72,18 @@ class Update(View):
             post.content = form.cleaned_data['content']
             post.save()
             return redirect('blog:detail', post_id=post_id)
+            # DetailView.get(self,request,post_id)로 정의했기 때문에 post_id로 attribute 선언해야함
         
         context = {
             'form': form,
-            'title': 'Blog',
-            'post': post
+            'title': 'Blog'
         }
         return render(request, 'blog/post_edit.html', context)
+
+
+# 글 삭제
+class Delete(View):
+    def post(self,request,post_id):
+        post = get_object_or_404(Post, id=post_id)
+        post.delete()
+        return redirect('blog:list')
