@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .forms import PostForm
 
@@ -16,7 +17,7 @@ class Index(View):
 
 
 # 글 작성
-class Write(View):
+class Write(LoginRequiredMixin, View):
     def get(self, request):
         form = PostForm()
         context ={
@@ -24,11 +25,18 @@ class Write(View):
             'title': 'Blog'
         }
         return render(request, 'blog/post_form.html', context)
+    
     def post(self,request):
         form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save()
+            post = form.save(commit=False)
+            post.writer = request.user
+            post.save()
             return redirect('blog:list')
+        context = {
+            'form' : form
+        }
+        return render(request, 'blog/post_form.html', context)
 
 
 # 글 상세 조회
