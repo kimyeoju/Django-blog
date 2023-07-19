@@ -20,5 +20,5 @@ urlpatterns = [
     path('detail/<int:post_id>/delete/', views.Delete.as_view(), name='delete'),
     
     # 글 검색
-    # path('search/', views.SearchFormView.as_view(), name='search'),
+    path('search/', views.SearchList.as_view(), name='search'),
 ]

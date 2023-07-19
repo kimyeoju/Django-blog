@@ -3,6 +3,8 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .forms import PostForm
+from django.db.models import Q
+
 
 # 글 목록 조회
 class Index(View):
@@ -48,6 +50,7 @@ class DetailView(View):
             'title': 'Blog',
             'id': post_id,
             # 템플릿 안에서는 id라는 변수로 사용
+            'post_writer': post.writer,
             'post_title': post.title,
             'post_content': post.content,
             'post_created_at': post.created_at
@@ -95,3 +98,19 @@ class Delete(View):
         post = get_object_or_404(Post, id=post_id)
         post.delete()
         return redirect('blog:list')
+    
+
+# 글 검색
+class SearchList(View):
+    def get(self, request):
+        search_query = request.GET.get('search', '')
+        posts = Post.objects.filter(
+            Q(title__icontains=search_query) | Q(content__icontains=search_query)
+        )
+        context = {
+            'search_query': search_query,
+            'posts': posts
+        }
+        return render(request, 'blog/post_list.html', context)
+
+        

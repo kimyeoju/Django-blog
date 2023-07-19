@@ -11,7 +11,7 @@ User = get_user_model()
 class RegisterForm(UserCreationForm):
     
     class Meta:
-        model = User
+        model = User # get_user_model() - 객체 인스턴스 반환 / settings.AUTH_USER_MODEL - 세팅의 설정을 참고 문자열 반환
         fields = ['email']
         # 사용자에게 입력 받을 항목(폼)
         

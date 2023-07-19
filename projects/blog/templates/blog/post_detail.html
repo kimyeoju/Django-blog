@@ -4,14 +4,18 @@
 <h1>
     {{ title }}
 </h1>
-<!-- 글 수정버튼 -->
-<a href="{% url 'blog:edit' post_id=id %}">수정</a>
-<p>제목: {{ post_title }}</p>
-<p>내용: {{ post_content }}</p>
-<p>작성일: {{ post_created_at }}</p>
-<!-- 글 삭제버튼 -->
-<form action="{% url 'blog:delete' post_id=id %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="삭제">
-</form>
+    <!-- 글 수정버튼 -->
+    {% if post_writer == request.user %}
+        <a href="{% url 'blog:edit' post_id=id %}">수정</a>
+        <!-- 글 삭제버튼 -->
+        <form action="{% url 'blog:delete' post_id=id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="삭제">
+        </form>
+    {% endif %}
+
+    <p>제목: {{ post_title }}</p>
+    <p>내용: {{ post_content }}</p>
+    <p>작성일: {{ post_created_at }}</p>
+
 {% endblock %}
