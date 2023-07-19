@@ -8,21 +8,25 @@
     <title>
         {% block title %} {{ title }} {% endblock %}
     </title>
-    <link rel="stylesheet" href="{% static 'css/list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
-<body>
+<body class="main-bg">
     {% include 'navbar.html' %}
     <div class="container">
         {% if user.is_authenticated %}
-            <p>Welcome, {{ user.email }}</p>
-            <a href="{% url 'users:logout' %}" class="btn">로그아웃</a>
+            <p>환영합니다, {{ user.email }} 님</p>
         {% else %}
-            <p>please, Login</p>
-            <a href="{% url 'users:login' %}" class="btn">로그인</a>
+            <p>원활한 서비스 이용을 위해 로그인 해주세요</p>
         {% endif %}
         
         <!-- 렌더링 화면 -->
-        {% block content%}
+        {% block content %}
+        {% endblock %}
+
+        {% block script %}
         {% endblock %}
     </div>
 

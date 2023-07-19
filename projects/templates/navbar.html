@@ -15,18 +15,18 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- 로그인 된 사람만 로그아웃, 글 작성 버튼 보임 -->
                 {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'blog:write' %}" class="btn">Write</a>
+                <li>
+                    <a class="nav-link" href="{% url 'blog:write' %}" class="btn">Write<img src="/static/img/write.png" alt="" width="20" height="24" class="d-inline-block align-text-top"></a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{% url 'users:logout' %}" class="btn">Logout</a>
+                    <a class="nav-link" href="{% url 'users:logout' %}" class="btn">Logout<img src="/static/img/logout.png" alt="" width="20" height="24" class="d-inline-block align-text-top"></a>
                 </li>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'users:register' %}" class="btn">Register</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:login' %}" class="btn">Login</a>
+                <li>
+                    <a class="nav-link" href="{% url 'users:login' %}" class="btn">Login<img src="/static/img/login.png" alt="" width="20" height="24" class="d-inline-block align-text-top"></a>
                 </li>
                 {% endif %}
             </ul>

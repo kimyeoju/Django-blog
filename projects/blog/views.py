@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .forms import PostForm
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 
 # 글 목록 조회
@@ -101,15 +102,22 @@ class Delete(View):
     
 
 # 글 검색
-class SearchList(View):
-    def get(self, request):
-        search_query = request.GET.get('search', '')
-        posts = Post.objects.filter(
-            Q(title__icontains=search_query) | Q(content__icontains=search_query)
-        )
+def search(request):
+    page = request.Get.get('page', 1) # 페이지
+    kw = request.Get.get('kw', '') # 검색어
+    post_list = Post.objects.all()
+    if kw:
+        post_list = post_list.filter(
+            Q(title__icontains=kw) |
+            Q(content__icontains=kw) |
+            Q(writer__username__icontains=kw)
+        ).distinct()
+        paginator = Paginator(post_list, 10)
+        page_obj = paginator.get_page(page)
         context = {
-            'search_query': search_query,
-            'posts': posts
+            'post_list': page_obj,
+            'page': page,
+            'kw': kw
         }
         return render(request, 'blog/post_list.html', context)
 

@@ -11,6 +11,12 @@ class Post(models.Model):
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    hits = models.PositiveIntegerField(default=0)
     
     def __str__(self):
         return self.title
+    
+    @property
+    def click(self):
+        self.hits += 1
+        self.save()
