@@ -14,7 +14,7 @@ class Index(View):
         post = Post.objects.all()
         # Post 모델에서 전체 객체 가져오기
         page = request.GET.get('page',1)
-        paginator = Paginator(post,10)
+        paginator = Paginator(post,5)
         page_obj = paginator.get_page(page)
         
         context = {

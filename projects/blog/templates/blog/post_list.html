@@ -42,7 +42,6 @@
                 <tr>
                     <td>No</td>
                     <td>제목</td>
-                    <td>내용</td>
                     <td>작성자</td>
                     <td>작성일시</td>
                     <td>조회수</td>
@@ -59,7 +58,6 @@
                         <span class="text-success small ml-2">{{ post.comment_set.count }}</span>
                         {% endif %}
                     </td>
-                    <td><a href="{% url 'blog:detail' pk=post.pk %}" class="btn">{{ post.content }}</a></td>
                     <td><a href="{% url 'blog:detail' pk=post.pk %}" class="btn">{{ post.writer }}</a></td>
                     <td><a href="{% url 'blog:detail' pk=post.pk %}" class="btn">{{ post.created_at|date:"Y-m-d" }}</a></td>
                     <td>{{ post.hit }}</td>
