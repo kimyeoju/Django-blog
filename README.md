@@ -314,38 +314,48 @@
 ### 메인 페이지
 
  - (로그인 전)메인 페이지
+![로그인 전 메인페이지](https://github.com/kimyeoju/Django-blog/assets/131739526/cc507e97-c3a6-43d8-917a-1c5a38f3847d)
 
   - 사용자가 로그인하지 않았을 경우, 상단바에 로그인과 회원가입 버튼이 보임
 
  - (로그인 후)메인 페이지
+![로그인 후 메인페이지](https://github.com/kimyeoju/Django-blog/assets/131739526/9607da40-07ba-4817-acb4-6188d455966b)
 
   - 사용자가 로그인했을 경우, 상단바에 글작성, 로그아웃 버튼이 보임
 
 ### 게시글 목록
 
  - (로그인 전)게시판 목록
+![게시판 목록 로그인 x](https://github.com/kimyeoju/Django-blog/assets/131739526/ca43f90e-dc5c-4412-89b6-9b741e45fa73)
 
  - (로그인 후)게시판 목록
+![게시판 목록 로그인 o](https://github.com/kimyeoju/Django-blog/assets/131739526/e37dc800-0285-46da-8db8-40561158675f)
+
 
 ### 게시글 상세 페이지
 
 - (자신이 작성한)게시글
+![상세페이지 로그인후](https://github.com/kimyeoju/Django-blog/assets/131739526/832dfdb8-7692-417a-b72a-9cb880c4741f)
 
 - (자신이 작성하지않은)게시글
+![상세페이지 로그인 후 ](https://github.com/kimyeoju/Django-blog/assets/131739526/653c4301-48a0-403b-a759-39f400169d59)
 
   - 자신이 작성한 게시글만 수정, 삭제 버튼이 보임
   - 자신이 작성한 댓글만 등록, 삭제 버튼이 보임
 
 ### 게시글 작성, 수정 페이지
+<img width="1440" alt="스크린샷 2023-07-21 오전 2 47 35" src="https://github.com/kimyeoju/Django-blog/assets/131739526/4df1ea58-b574-41ca-ad82-5122c6c96b3e">
 
  - 게시글을 작성할 수 있으며, 기존의 작성했던 게시글의 내용을 불러와 수정할 수 있다.
 
-### 로그인 페이지
-
 ### 회원가입 페이지
+![회원가입페이지](https://github.com/kimyeoju/Django-blog/assets/131739526/aa71df60-64b8-4db5-b369-73371e9717f0)
+
+### 로그인 페이지
+![회원가입](https://github.com/kimyeoju/Django-blog/assets/131739526/139cac7f-d9aa-4974-813b-239b49e47963)
 
 # 5. 느낀점 및 계획
- - Django 강의를 들으면서 이해가 안갔던 부분을 프로젝트를 하며 장고의 구조와 원리를 익히는 시간이 되었다.
+ - Django 강의를 들으면서 이해가 안갔던 부분을 프로젝트를 하며 장고의 구조와 원리를 익히는 시간이 되었다. 
 
 
 
