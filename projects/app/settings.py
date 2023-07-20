@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-pano+_z=0z)6#_jj9)i4%_l=4(#a$ngzh-i&rmmxj4!3vh6-at
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

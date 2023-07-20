@@ -21,9 +21,10 @@
         <!-- 글 상세 화면 -->
         <div class="detail-title">
             <h2>{{ post_title }}</h2>
+            <br>
             <section class="detail-information">
-                <span><img src="/static/img/people.png" width="22" height="20" alt="">{{ post_writer }}</span>
-                <span><img src="/static/img/counter.png" width="22" height="20" alt="">{{ post_hit }}</span>
+                <span><img src="/static/img/people.png" width="22" height="20" alt="">{{ post_writer }} | </span>
+                <span><img src="/static/img/counter.png" width="22" height="20" alt="">{{ post_hit }} | </span>
                 <span><img src="/static/img/time.png" width="22" height="20" alt="">{{ post_created_at|date:"Y-m-d" }}</span>
             </section>
         </div>

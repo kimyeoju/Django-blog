@@ -83,13 +83,13 @@
         {% endif %}
         <!-- 페이지리스트 -->
         {% for page_number in posts.paginator.page_range %}
-        {% if page_number == posts.number %}
-        
-            <a class="num active" href="?page={{ page_number }}">{{ page_number }}</a>
-        {% else %}
-            <a class="num" href="?page={{ page_number }}">{{ page_number }}</a>
-        {% endif %}
+            {% if page_number == posts.number %}
+                <a class="num active" href="?page={{ page_number }}">{{ page_number }}</a>
+            {% else %}
+                <a class="num" href="?page={{ page_number }}">{{ page_number }}</a>
+            {% endif %}
         {% endfor %}
+
         <!-- 다음페이지 -->
         {% if posts.has_next %}
         
