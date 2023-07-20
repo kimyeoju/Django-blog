@@ -1,8 +1,75 @@
-.main-bg{
-    background-color: white;
+/* 공통 스타일 */
+
+/* 초기화 ------------------------------------ */
+body,
+h1,
+h2,
+p,
+fieldset,
+ul {
+	padding: 0;
+	margin: 0;
+}
+a {
+	text-decoration: none;
+	color: inherit;
 }
 
-.container{
-    margin-top: 10px;
-    font-size: large;
+input,
+textarea,
+select {
+	box-sizing: border-box;
+}
+
+select:enabled,
+button:enabled {
+	cursor: pointer;
+}
+
+/* layout --------------------------------- */
+body {
+	min-width: 1000px;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+.main {
+	flex-grow: 1;
+	width: 1000px;
+	margin: auto;
+}
+
+
+/* index.html 메인페이지 */
+.main-title{
+	color: #edc6b1;
+}
+
+
+.main-button{
+	font-size: x-large;
+	background-color: #edc6b1;
+	width: 300px;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+
+}
+
+
+
+/* 로그인시 보여주는 메시지 */
+.user-status{
+    display: flex;
+    justify-content: center;
+    margin: 20px 2px;
+}
+/* footer */
+
+#footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFABAB;
+    height: 60px;
 }

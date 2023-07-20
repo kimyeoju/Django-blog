@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>
-    {{ title }}
-</h1>
-<a href="{% url 'blog:list' %}">블로그 입장하기</a>
-<!-- 회원가입, 로그인버튼  -->
-<a href="{% url 'users:register' %}">회원가입</a>
-<a href="{% url 'users:login' %}">로그인</a>
+<div class="d-flex flex-column bd-highlight">
+    <div class="p-2 bd-highlight">
+        <h1 class="main-title">
+            {{ title }}
+        </h1>
+    </div>
+    <div class="p-2 bd-highlight">
+        <a class="main-button btn" href="{% url 'blog:list' %}">블로그</a>
+    </div>
+    <div class="p-2 bd-highlight">
+        <a class="main-button btn" href="{% url 'users:register' %}">회원가입</a>
+    </div>
+    <div class="p-2 bd-highlight">
+        <a class="main-button btn" href="{% url 'users:login' %}">로그인</a>
+    </div>
+</div>
 
 {% endblock %}

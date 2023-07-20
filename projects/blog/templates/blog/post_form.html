@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>블로그 글 작성 화면</p>
-    <form action="{% url 'blog:write' %}" method="post">
+    <h2 class="write-title">게시글 작성 페이지</h2>
+    <form class="write-form" action="{% url 'blog:write' %}" method="post">
+        <input type="submit" value="등록" class="post-write-button">
+        <br>
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="작성" class="btn btn-outline-success">
     </form>
 {% endblock %}

@@ -11,8 +11,8 @@ class Registration(View):
             return redirect('blog:list')
         form = RegisterForm()
         context = {
-            'form': form,
-            'title':'User'
+            'title':'Register',
+            'form': form
         }
         return render(request, 'user/user_register.html', context)
     
@@ -22,6 +22,11 @@ class Registration(View):
             user = form.save()
             # 회원가입을 통해 user의 정보들을 저장
             return redirect('users:login')
+        context = {
+            'title': 'Register',
+            'form': form
+        }
+        return render(request, 'user/user_register.html', context)
 
 
 # 로그인

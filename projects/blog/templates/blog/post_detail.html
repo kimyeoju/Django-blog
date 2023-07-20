@@ -1,22 +1,104 @@
 {% extends 'base.html' %}
 
 {% block content%}
-{{ post.click }}
-<h1>
-    {{ title }}
-</h1>
-    <!-- 글 수정버튼 -->
-    {% if post_writer == request.user %}
-        <a href="{% url 'blog:edit' post_id=id %}">수정</a>
-        <!-- 글 삭제버튼 -->
-        <form action="{% url 'blog:delete' post_id=id %}" method="post">
+{{ post.update_counter }}
+<div class="container">
+    <div>
+        <!-- 게시판 목록 버튼 -->
+        <button class="index-board"><a href="{% url 'blog:list' %}" class="btn"><img src="/static/img/index.png" alt="" width="30" height="24">목록</a></button>
+        <!-- 글 수정버튼 -->
+        <section class="detail-post-button gap-1">
+            {% if post_writer == request.user %}
+                <span><a class="btn btn-outline-secondary"href="{% url 'blog:edit' pk=post_id %}">수정</a></span>
+                <!-- 글 삭제버튼 -->
+                <span><form action="{% url 'blog:delete' pk=post_id %}" method="post">
+                    {% csrf_token %}
+                    <input class="btn btn-outline-secondary "type="submit" value="삭제">
+                </form></span>
+            {% endif %}
+        </section>
+    </div>
+        <!-- 글 상세 화면 -->
+        <div class="detail-title">
+            <h2>{{ post_title }}</h2>
+            <section class="detail-information">
+                <span><img src="/static/img/people.png" width="22" height="20" alt="">{{ post_writer }}</span>
+                <span><img src="/static/img/counter.png" width="22" height="20" alt="">{{ post_hit }}</span>
+                <span><img src="/static/img/time.png" width="22" height="20" alt="">{{ post_created_at|date:"Y-m-d" }}</span>
+            </section>
+        </div>
+        <div class="detail-content">
+            <p>{{ post_content }}</p>
+        </div>
+    
+    
+        <!-- 댓글 작성 화면 -->
+        <h3><img src="/static/img/comment.png" alt="" width="30" height="30">Comment</h3>
+        <div class="container">
+            <form class="comment-form" action="{% url 'blog:cm-write' pk=post_id %}" method="post">
+                {% csrf_token %}
+                {% if comment_form.errors %}
+                    {% with form=comment_form %}
+                        {% include 'blog/form_error.html' %}
+                    {% endwith %}
+                {% else %}
+                    {{ comment_form.content }}
+                {% endif %}
+                <input class="btn btn-outline-secondary btn-sm" type="submit" value="등록">
+            </form>
+        
+            <!-- comments -->
+            {% if comments %}
+                <ul class="detail-comments">
+                    {% for comment in comments %}
+                        <li class="user-comment"><img src="/static/img/user.png" alt="" width="30" height="25"> {{ comment.content }} | {{ comment.created_at|date:"Y-m-d" }} | {{ comment.writer }}
+                            {% if comment.writer == request.user %}
+                                <form action="{% url 'blog:cm-delete' pk=comment.pk %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="submit" value="삭제" class='btn btn-outline-secondary btn-sm'>
+                                </form>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>코멘트가 없습니다.</p>
+            {% endif %}
+        </div>
+    
+        <!-- hashtags -->
+        <h3><img src="/static/img/hashtag.png" alt="" width="30" height="30">HashTag</h3>
+        <form action="{% url 'blog:tag-write' pk=post_id %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="삭제">
+            {% if hashtag_form.errors %}
+                {% with form=hashtag_form %}
+                    {% include 'blog/form_error.html' %}
+                {% endwith %}
+            {% else %}
+                {{ hashtag_form.name }}
+            {% endif %}
+            <input class="btn btn-outline-secondary btn-sm" type="submit" value="등록">
         </form>
-    {% endif %}
+    
+        {% if hashtags %}
+            <ul class="detail-hashtags">
+                {% for hashtag in hashtags %}
+                <li>
+                    <img src="/static/img/hashtag2.png" alt="" width="20" height="15">{{ hashtag }}
+                    {% if hashtag.writer == request.user %}
+                        <form action="{% url 'blog:tag-delete' pk=hashtag.pk %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="삭제" class="btn btn-outline-secondary btn-sm">
+                        </form>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <br>
+            <p>작성된 해시태그가 없습니다.</p>
+        {% endif %}
+</div>
 
-    <p>제목: {{ post_title }}</p>
-    <p>내용: {{ post_content }}</p>
-    <p>작성일: {{ post_created_at }}</p>
 
 {% endblock %}
