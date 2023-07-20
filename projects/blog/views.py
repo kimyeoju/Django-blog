@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from .models import Post, Comment, HashTag
 from .forms import PostForm, CommentForm, HashTagForm
 from django.db.models import Q
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 # 글 목록 조회
@@ -13,9 +13,14 @@ class Index(View):
     def get(self, request):
         post = Post.objects.all()
         # Post 모델에서 전체 객체 가져오기
+        page = request.GET.get('page',1)
+        paginator = Paginator(post,10)
+        page_obj = paginator.get_page(page)
+        
         context = {
-            'posts': post,
-            'title': 'Blog'
+            'posts': page_obj,
+            'title': 'Blog',
+            'post_count': post
         }
         return render(request, 'blog/post_list.html', context)
 

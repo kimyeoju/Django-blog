@@ -1,0 +1,91 @@
+/* peach - #edc6b1 */
+
+/* post_list.html 게시글 목록 */
+
+.post-title{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    border-bottom: solid 4px black;
+    padding: 5px;
+    padding-bottom: 10px;
+}
+
+.post-top{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-tag input[type=submit]{
+    border-radius: 4px;
+    background-color: #FFABAB;
+}
+
+#search-input{
+    border-radius: 4px;
+}
+
+/* post_form.html 글 작성 */
+
+.write-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.write-form{
+    padding: 10px;
+}
+.post-write-button{
+    display: flex;
+    float: right;
+    background-color: #FFABAB;
+    border-radius: 4px;
+}
+
+/* post_detail.html 상세 페이지 */
+
+/* 목록 버튼 */
+.index-board{
+    border-radius: 4px;
+    background-color: #FFABAB;
+}
+
+/* 게시판 제목 */
+.detail-title{
+    margin-top: 4px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    text-align: center;
+    align-items: center;
+    padding: 50px;
+}
+
+/* detail에 있는 수정, 삭제 버튼  */
+.detail-post-button{
+    display: flex;
+    float: right;
+}
+
+.edit-button,
+.delete-button{
+    background-color: #FFABAB;
+
+}
+
+.detail-content{
+    margin: 20px;
+    font-size: large;
+    height: 100px;
+}
+
+.detail-comments,
+.detail-hashtags{
+    list-style: none;
+}
+
+.user-comment{
+    padding: 20px;
+}
