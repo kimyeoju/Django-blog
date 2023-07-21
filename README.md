@@ -397,7 +397,7 @@
 
  # 6. aws lightsail 배포
 
- ### 배포 과정 중 알아야 할 것 
+ ### 배포 과정 중 알아야 할 것 !
 
 <img width="1009" alt="image" src="https://github.com/kimyeoju/Django-blog/assets/131739526/8df53fde-7c00-4964-8d87-27f5302e8040">
 
