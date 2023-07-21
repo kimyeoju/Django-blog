@@ -420,15 +420,24 @@
     - 게시글 사진 업로드, 카테고리 추가, 좋아요 추가
   - 댓글 추가 기능
    - 대댓글
-  
-  
 
+ # 7. aws lightsail 배포
 
+ ### 배포 과정 중 알아야 할 것 
 
+<img width="1009" alt="image" src="https://github.com/kimyeoju/Django-blog/assets/131739526/8df53fde-7c00-4964-8d87-27f5302e8040">
 
+ - 아마존 Lightsail 인스턴스를 생성, 플랫폼 django로 설정
 
+ <img width="878" alt="image" src="https://github.com/kimyeoju/Django-blog/assets/131739526/b4d02616-b92d-479d-bd4b-1b643da4c965">
+ 
+ - 방화벽 사용자 지정 8000포트 추가
 
+ <img width="1019" alt="스크린샷 2023-07-21 오전 11 46 51" src="https://github.com/kimyeoju/Django-blog/assets/131739526/ee57dcd9-7066-4f6e-8f69-92b2257765a2">
+ 
+  - 주의 ! 서버를 실행할 때 python manage.py runserver만 하면 오류가 떠서 python manage.py runserver 0.0.0.0:8000 포트로 지정을 해줘야 한다.
 
+<img width="1081" alt="image" src="https://github.com/kimyeoju/Django-blog/assets/131739526/6c5b2287-84b3-485f-a6c4-11c3ded5532f">
 
-
+ - 배포 후 수정이 필요한 경우 코드를 깃허브에 깃푸쉬를 하고 git push -> git pull을 하면 수정 된 코드로 배포할 수 있다.
 
