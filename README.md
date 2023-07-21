@@ -313,23 +313,27 @@
 
 ### 메인 페이지
 
-* (로그인 전)메인 페이지
+(로그인 전)메인 페이지
 
 ![로그인 전 메인페이지](https://github.com/kimyeoju/Django-blog/assets/131739526/cc507e97-c3a6-43d8-917a-1c5a38f3847d)
 
   - 사용자가 로그인하지 않았을 경우, 상단바에 로그인과 회원가입 버튼이 보임
 
-* (로그인 후)메인 페이지
+(로그인 후)메인 페이지
 
 ![로그인 후 메인페이지](https://github.com/kimyeoju/Django-blog/assets/131739526/9607da40-07ba-4817-acb4-6188d455966b)
 
   - 사용자가 로그인했을 경우, 상단바에 글작성, 로그아웃 버튼이 보임
+
+--
 
 ### 회원가입 페이지
 
 ![회원가입페이지](https://github.com/kimyeoju/Django-blog/assets/131739526/aa71df60-64b8-4db5-b369-73371e9717f0)
 
   - Django에서 제공하는 UserCreationForm을 사용
+
+--
 
 ### 로그인 페이지
 
