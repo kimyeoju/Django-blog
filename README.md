@@ -397,9 +397,32 @@
 ![chrome-capture-2023-6-21 (4)](https://github.com/kimyeoju/Django-blog/assets/131739526/3177b14b-8454-49d9-98a7-92916699b196)
 
 
+ # 6. aws lightsail 배포
+
+ ### 배포 과정 중 알아야 할 것 
+
+<img width="1009" alt="image" src="https://github.com/kimyeoju/Django-blog/assets/131739526/8df53fde-7c00-4964-8d87-27f5302e8040">
 
 
-# 6. 느낀점 및 추후 계획
+ - 아마존 Lightsail 인스턴스를 생성, 플랫폼 django로 설정
+
+ <img width="878" alt="image" src="https://github.com/kimyeoju/Django-blog/assets/131739526/b4d02616-b92d-479d-bd4b-1b643da4c965">
+
+ 
+ - 방화벽 사용자 지정 8000포트 추가
+
+ <img width="1019" alt="스크린샷 2023-07-21 오전 11 46 51" src="https://github.com/kimyeoju/Django-blog/assets/131739526/ee57dcd9-7066-4f6e-8f69-92b2257765a2">
+ 
+ 
+  - 주의 ! 서버를 실행할 때 python manage.py runserver만 하면 오류가 떠서 python manage.py runserver 0.0.0.0:8000 포트로 지정을 해줘야 한다.
+
+<img width="1081" alt="image" src="https://github.com/kimyeoju/Django-blog/assets/131739526/6c5b2287-84b3-485f-a6c4-11c3ded5532f">
+
+
+ - 배포 후 수정이 필요한 경우 코드를 깃허브에 깃푸쉬를 하고 git push -> git pull을 하면 수정 된 코드로 배포할 수 있다.
+
+
+# 7. 느낀점 및 추후 계획
 
 ### 느낀점
   - Django 강의를 들으면서 생소한 환경세팅부터 몇번을 봐도 이해가 가지않는 코드가 많았다. 프로젝트 시작 전에는 과연 내가 기능 하나를 제대로 구현할 수 있을까 하는 막연한 두려움이 있었다. 하지만 프로젝트가 시작하고 나서 혼자 기능을 구현하며 오류를 수정하고 시행착오를 겪는 과정에서 장고의 원리와 구조를 깊게 이해하는 시간이 되었다.
@@ -420,24 +443,4 @@
     - 게시글 사진 업로드, 카테고리 추가, 좋아요 추가
   - 댓글 추가 기능
    - 대댓글
-
- # 7. aws lightsail 배포
-
- ### 배포 과정 중 알아야 할 것 
-
-<img width="1009" alt="image" src="https://github.com/kimyeoju/Django-blog/assets/131739526/8df53fde-7c00-4964-8d87-27f5302e8040">
-
- - 아마존 Lightsail 인스턴스를 생성, 플랫폼 django로 설정
-
- <img width="878" alt="image" src="https://github.com/kimyeoju/Django-blog/assets/131739526/b4d02616-b92d-479d-bd4b-1b643da4c965">
- 
- - 방화벽 사용자 지정 8000포트 추가
-
- <img width="1019" alt="스크린샷 2023-07-21 오전 11 46 51" src="https://github.com/kimyeoju/Django-blog/assets/131739526/ee57dcd9-7066-4f6e-8f69-92b2257765a2">
- 
-  - 주의 ! 서버를 실행할 때 python manage.py runserver만 하면 오류가 떠서 python manage.py runserver 0.0.0.0:8000 포트로 지정을 해줘야 한다.
-
-<img width="1081" alt="image" src="https://github.com/kimyeoju/Django-blog/assets/131739526/6c5b2287-84b3-485f-a6c4-11c3ded5532f">
-
- - 배포 후 수정이 필요한 경우 코드를 깃허브에 깃푸쉬를 하고 git push -> git pull을 하면 수정 된 코드로 배포할 수 있다.
 
