@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load blog_filter %}
 {% block content %}
 
 <h1 class="post-title pb-2">게시판 페이지</h1>
@@ -50,8 +49,8 @@
             <tbody>
                 {% for post in posts %}
                 <tr>
-                    <td>{{ posts.paginator.count|sub:posts.start_index|sub:forloop.counter0|add:1}}</td>
-                    <td>
+                    <td>{{ post.id }}</td>
+                    <td>   
                         <a href="{% url 'blog:detail' pk=post.pk %}" class="btn">{{ post.title }}</a>
                         <!-- 댓글 개수 표시 -->
                         {% if post.comment_set.count > 0 %}
