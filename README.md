@@ -382,17 +382,17 @@
 
 # 5. 실행 화면
 
-로그인 기능
+### 로그인 기능
 
 ![chrome-capture-2023-6-21 (2)](https://github.com/kimyeoju/Django-blog/assets/131739526/9e5c1df1-9c10-45c7-bd2a-98d0ae658649)
 
-회원가입 기능
+### 회원가입 기능
 
 ![chrome-capture-2023-6-21 (2)](https://github.com/kimyeoju/Django-blog/assets/131739526/58851291-5040-4421-bceb-217ab5ef225a)
 
  - 회원가입이 성공적으로 완료가 된다면 로그인 페이지로 돌아간다.
 
-게시글, 댓글, 해시태그 작성, 삭제 기능
+### 게시글, 댓글, 해시태그 작성, 삭제 기능
 
 ![chrome-capture-2023-6-21 (4)](https://github.com/kimyeoju/Django-blog/assets/131739526/3177b14b-8454-49d9-98a7-92916699b196)
 
