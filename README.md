@@ -359,13 +359,13 @@
 
 ### 게시글 상세 페이지
 
-* (자신이 작성한) 게시글
+(자신이 작성한) 게시글
 
 ![상세페이지 로그인후](https://github.com/kimyeoju/Django-blog/assets/131739526/832dfdb8-7692-417a-b72a-9cb880c4741f)
 
   - 자신이 작성한 게시글만 수정, 삭제 버튼이 보임
 
-* (자신이 작성하지않은) 게시글
+(자신이 작성하지않은) 게시글
 
 ![상세페이지 로그인 후 ](https://github.com/kimyeoju/Django-blog/assets/131739526/653c4301-48a0-403b-a759-39f400169d59)
 
@@ -399,7 +399,7 @@
 
 ### 회원가입 기능
 
-![chrome-capture-2023-6-21 (2)](https://github.com/kimyeoju/Django-blog/assets/131739526/58851291-5040-4421-bceb-217ab5ef225a)
+![chrome-capture-2023-6-22](https://github.com/kimyeoju/Django-blog/assets/131739526/2ed688a3-6ea4-4a35-b031-cd26189e23ea)
 
  - 회원가입이 성공적으로 완료가 된다면 로그인 페이지로 돌아간다.
 
