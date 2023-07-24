@@ -11,6 +11,7 @@ class Post(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
+    imgfile = models.ImageField(null=True, upload_to="", blank=True) # 이미지 컬럼추가
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     hit = models.PositiveIntegerField(default=0)

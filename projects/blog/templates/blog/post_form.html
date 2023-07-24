@@ -2,10 +2,15 @@
 
 {% block content %}
     <h2 class="write-title">게시글 작성 페이지</h2>
-    <form class="write-form" action="{% url 'blog:write' %}" method="post">
-        <input type="submit" value="등록" class="post-write-button">
-        <br>
-        {% csrf_token %}
-        {{ form.as_p }}
-    </form>
+        <form method="post" class="post-form my-3" enctype="multipart/form-data">
+            <input type="submit" value="등록" class="post-write-button">
+    	    <div class="form-group">
+                <label for="imgfile">이미지 : </label>
+                <input type="file" class="form-control" name="imgfile" id="imgfile">
+            </div>
+            <form class="write-form" action="{% url 'blog:write' %}" method="post">
+                <br>
+                {% csrf_token %}
+                {{ form.as_p }}
+            </form>
 {% endblock %}

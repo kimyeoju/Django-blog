@@ -4,6 +4,7 @@
 <h1 class="post-title pb-2">게시판 페이지</h1>
 
 <div class="post-top">
+
     <!-- 게시글 수 세기 -->
     <div class="post-count">
         {% if post_count.count > 0 %}
@@ -12,6 +13,7 @@
         <p><strong>0개</strong>의 게시글이 있습니다.</p>
         {% endif %}
     </div>
+
     <!-- 태그 검색 -->
     <div class="search-tag">
         <form id="search-form" action="" method="get">
@@ -67,7 +69,14 @@
     {% else %}
     <p>작성된 게시글이 없습니다.</p>
     {% endif %}
+
+    <!-- 목록 하단 글작성 버튼 -->
+    <div>
+        <a href="{% url 'blog:write' %}" class="btn btn-outline-secondary">글작성</a>
+    </div>
 </div>
+
+
 
 <!-- 페이징처리시작 -->
     <ul class="pagination justify-content-center" id="page_button">

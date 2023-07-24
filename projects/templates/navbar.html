@@ -16,7 +16,7 @@
                 <!-- 로그인 된 사람만 로그아웃, 글 작성 버튼 보임 -->
                 {% if user.is_authenticated %}
                 <li>
-                    <a class="nav-link" href="{% url 'blog:write' %}" class="btn">Write<img src="/static/img/write.png" alt="" width="20" height="24" class="d-inline-block align-text-top"></a>
+                    <a class="nav-link" href="{% url 'blog:write' %}" class="btn">WRITE<img src="/static/img/write.png" alt="" width="20" height="24" class="d-inline-block align-text-top"></a>
                 </li>
                 <li>
                     <a class="nav-link" href="{% url 'users:logout' %}" class="btn">Logout<img src="/static/img/logout.png" alt="" width="20" height="24" class="d-inline-block align-text-top"></a>

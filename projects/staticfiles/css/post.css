@@ -81,6 +81,11 @@
     height: 100px;
 }
 
+/* 이미지 */
+.post_img{
+    margin-top: 10px;
+}
+
 .detail-comments,
 .detail-hashtags{
     list-style: none;

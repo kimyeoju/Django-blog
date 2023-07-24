@@ -36,7 +36,7 @@ class Write(LoginRequiredMixin, View):
         return render(request, 'blog/post_form.html', context)
     
     def post(self,request):
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES) # files는 따로 request의 files로 속성을 지정
         
         if form.is_valid():
             post = form.save(commit=False)
@@ -55,6 +55,7 @@ class DetailView(View):
     
     def get(self, request, pk):
         post = Post.objects.prefetch_related('comment_set', 'hashtag_set').get(pk=pk)
+        post.update_counter
         
         comments = post.comment_set.all()
         hashtags = post.hashtag_set.all()
@@ -75,8 +76,8 @@ class DetailView(View):
             'hashtags': hashtags,
             'comment_form': comment_form,
             'hashtag_form': hashtag_form,
+            'post_imgfile' : post.imgfile
         }
-        post.update_counter
         
         return render(request, 'blog/post_detail.html', context)
         

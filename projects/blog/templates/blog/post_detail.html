@@ -28,9 +28,14 @@
                 <span><img src="/static/img/time.png" width="22" height="20" alt="">{{ post_created_at|date:"Y-m-d" }}</span>
             </section>
         </div>
-        <div class="detail-content">
-            <p>{{ post_content }}</p>
-        </div>
+        <div class="d-flex justify-content-center">
+            {% if post_imgfile %}
+                    <div class="p-2">
+                        <img src="{{ post_imgfile.url }}" alt="게시물사진" width="500px" height="500px">
+                    </div>
+                    {% endif %}
+                </div>
+                <p>{{ post_content }}</p>
     
     
         <!-- 댓글 작성 화면 -->
