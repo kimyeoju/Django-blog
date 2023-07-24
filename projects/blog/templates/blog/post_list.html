@@ -45,6 +45,7 @@
                     <td>제목</td>
                     <td>작성자</td>
                     <td>작성일시</td>
+                    <td>이미지 유/무</td>
                     <td>조회수</td>
                 </tr>
             </thead>
@@ -61,6 +62,13 @@
                     </td>
                     <td><a href="{% url 'blog:detail' pk=post.pk %}" class="btn">{{ post.writer }}</a></td>
                     <td><a href="{% url 'blog:detail' pk=post.pk %}" class="btn">{{ post.created_at|date:"Y-m-d" }}</a></td>
+                    <td>
+                        {% if post.imgfile %}
+                        <span class="badge bg-secondary py-1">O</span>
+                        {% else %}
+                        <span class="badge bg-warning py-1">X</span>
+                        {% endif %}
+                    </td>
                     <td>{{ post.hit }}</td>
                 </tr>
                 {% endfor %}
