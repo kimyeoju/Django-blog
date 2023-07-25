@@ -11,7 +11,7 @@
 - 사용자 기능
   - 회원가입, 로그인, 로그아웃
 - 게시글 기능
-  - 게시글 작성, 조회, 수정, 삭제
+  - 게시글 작성, 사진 업로드, 조회, 수정, 삭제
   - 조회수 표시
 - 댓글 기능
   - 게시글 상세 페이지에 댓글 작성, 조회, 삭제
@@ -300,6 +300,8 @@
     - 게시글 목록, 로그인 페이지 템플릿 구현
 
 - 2023년 07월 20일
+  - 게시글 작성
+    - 게시글에 사진 업로드 추가 기능 구현
   - 게시글 목록
     - 게시글 목록의 조회수 기능 구현
     - 한 페이지 당 5개의 글로 제한하는 페이징 처리기능 구현
@@ -308,20 +310,19 @@
     - 게시글 상세보기 댓글, 해시태그 UI 적용
   - 정적 파일 모으기
     - python manage.py collectstatic 명령어를 통해 staticfiles 폴더에 css, img 파일 모음
-
 ## 4. 상세 페이지 설명
 
 ### 메인 페이지
 
 (로그인 전)메인 페이지
 
-![로그인 전 메인페이지](https://github.com/kimyeoju/Django-blog/assets/131739526/cc507e97-c3a6-43d8-917a-1c5a38f3847d)
+![chrome-capture-2023-6-25 (1)](https://github.com/kimyeoju/Django-blog/assets/131739526/f149f034-d2ae-46f2-9b0c-61ae7fab1285)
 
   - 사용자가 로그인하지 않았을 경우, 상단바에 로그인과 회원가입 버튼이 보임
 
 (로그인 후)메인 페이지
 
-![로그인 후 메인페이지](https://github.com/kimyeoju/Django-blog/assets/131739526/9607da40-07ba-4817-acb4-6188d455966b)
+![chrome-capture-2023-6-25](https://github.com/kimyeoju/Django-blog/assets/131739526/7d97fee1-9654-4f5f-8d71-b5fa9ca03b40)
 
   - 사용자가 로그인했을 경우, 상단바에 글작성, 로그아웃 버튼이 보임
 
@@ -345,11 +346,12 @@
 
 * (로그인 전)게시글 목록
 
-![게시판 목록 로그인 x](https://github.com/kimyeoju/Django-blog/assets/131739526/ca43f90e-dc5c-4412-89b6-9b741e45fa73)
+![chrome-capture-2023-6-25 (2)](https://github.com/kimyeoju/Django-blog/assets/131739526/ee775446-79cf-4b87-b974-18f5ca168c30)
+
 
 * (로그인 후)게시글 목록
 
-![게시판 목록 로그인 o](https://github.com/kimyeoju/Django-blog/assets/131739526/e37dc800-0285-46da-8db8-40561158675f)
+![chrome-capture-2023-6-25 (3)](https://github.com/kimyeoju/Django-blog/assets/131739526/833d612a-8fc5-458a-8032-b9c044d1b0d2)
 
   - 게시글 목록에서 해당 게시물을 클릭하면 게시물의 상세 내용을 확인할 수 있음
   - 게시글 제목 옆에 댓글의 개수가 몇 개인지 확인할 수 있다.
@@ -361,21 +363,33 @@
 
 (자신이 작성한) 게시글
 
-![상세페이지 로그인후](https://github.com/kimyeoju/Django-blog/assets/131739526/832dfdb8-7692-417a-b72a-9cb880c4741f)
+![chrome-capture-2023-6-26 (2)](https://github.com/kimyeoju/Django-blog/assets/131739526/e5668826-50cd-4d24-9b31-88665a5d4d75)
 
   - 자신이 작성한 게시글만 수정, 삭제 버튼이 보임
 
 (자신이 작성하지않은) 게시글
 
-![상세페이지 로그인 후 ](https://github.com/kimyeoju/Django-blog/assets/131739526/653c4301-48a0-403b-a759-39f400169d59)
+
+![chrome-capture-2023-6-26 (1)](https://github.com/kimyeoju/Django-blog/assets/131739526/fb2ccc7a-b702-4e90-ae25-89cd0caf4bb5)
+
 
   - 자신이 작성한 댓글만 등록, 삭제 버튼이 보임
 
 ---
 
-### 게시글 작성, 수정 페이지
+### 게시글 작성 페이지
 
-<img width="1440" alt="스크린샷 2023-07-21 오전 2 47 35" src="https://github.com/kimyeoju/Django-blog/assets/131739526/4df1ea58-b574-41ca-ad82-5122c6c96b3e">
+
+![chrome-capture-2023-6-26](https://github.com/kimyeoju/Django-blog/assets/131739526/951846d1-a137-44c1-9241-051b8c7b7856)
+
+
+- 사용자는 게시글에 사진을 업로드 할 수 있다.
+- 게시글 목록에서 이미지 유/무를 확인할 수 있다.
+
+
+### 게시글 수정 페이지
+
+![chrome-capture-2023-6-26 (3)](https://github.com/kimyeoju/Django-blog/assets/131739526/a573af07-7f2c-4ce5-8a78-0a871058c856)
 
 
   - 사용자는 게시글을 작성할 수 있으며, 기존의 작성했던 게시글의 내용을 불러와 수정할 수 있다.
@@ -405,7 +419,8 @@
 
 ### 게시글, 댓글, 해시태그 작성, 삭제 기능
 
-![chrome-capture-2023-6-21 (4)](https://github.com/kimyeoju/Django-blog/assets/131739526/3177b14b-8454-49d9-98a7-92916699b196)
+![chrome-capture-2023-6-26 (1)](https://github.com/kimyeoju/Django-blog/assets/131739526/73dbb64b-fab9-4ac2-91c2-e11e5c364e20)
+
 
 
  # 6. aws lightsail 배포
@@ -454,7 +469,7 @@
   - 사용자 관련 추가 기능
    - 비밀번호 변경 기능, 프로필 수정, 닉네임 추가
   - 게시글 관련 추가 기능
-    - 게시글 사진 업로드, 카테고리 추가, 좋아요 추가
+    - 카테고리 추가, 좋아요 추가
   - 댓글 추가 기능
    - 대댓글
 
