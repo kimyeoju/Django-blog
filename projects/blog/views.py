@@ -11,16 +11,19 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # 글 목록 조회
 class Index(View):
     def get(self, request):
-        post = Post.objects.all()
         # Post 모델에서 전체 객체 가져오기
+        post = Post.objects.all()
+        # get 방식으로 호출된 url에서 page값을 가져올 때 사용 page값없이 호출된 경우에는 디폴트로 1이라는 값을 설정
         page = request.GET.get('page',1)
+        # 첫번째 파라미터 post 게시물 전체를 의미하는 데이터, 두번째 파라미터는 5 페이지당 보여줄 게시물의 개수
         paginator = Paginator(post,5)
+        # paginator을 이용하여 요청된 페이지(page)에 해당되는 페이징 객체(page_obj)생성 -> 장고 내부적으로 데이터 전체를 조회하지 않고 해당 페이지의 데이터만 조회하도록 쿼리가 변경
         page_obj = paginator.get_page(page)
-        
         context = {
+            # posts는 page_obj 즉 5페이지의 데이터 조회
             'posts': page_obj,
             'title': 'Blog',
-            'post_count': post
+            'post_obj': post
         }
         return render(request, 'blog/post_list.html', context)
 
@@ -66,7 +69,6 @@ class DetailView(View):
         context = {
             'title': 'Blog',
             'post_id' : pk,
-            # 템플릿 안에서는 id라는 변수로 사용
             'post_title': post.title,
             'post_writer': post.writer,
             'post_content': post.content,
