@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load blog_filter %}
 {% block content %}
 
 <h1 class="post-title pb-2">게시판 페이지</h1>
@@ -38,9 +37,9 @@
 
 
     <!-- 게시글 보이기 -->
-    {% if posts %}
-        <table class="table table-bordered mt-2">
-            <thead class="table-light">
+    <table class="table table-bordered mt-2">
+        <thead class="table-light">
+                {% if posts %}
                 <tr>
                     <td>No</td>
                     <td>제목</td>
@@ -54,10 +53,9 @@
                 {% for post in posts %}
                 <tr>
                     <td>
-                        <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
-                        {{ posts.paginator.count|sub:posts.start_index|sub:forloop.counter0|add:1 }}
+                        {{ post.id }}
                     </td>
-                    <td>   
+                    <td>
                         <a href="{% url 'blog:detail' pk=post.pk %}" class="btn">{{ post.title }}</a>
                         <!-- 댓글 개수 표시 -->
                         {% if post.comment_set.count > 0 %}

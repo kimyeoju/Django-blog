@@ -19,12 +19,9 @@
 
 .search-tag input[type=submit]{
     border-radius: 4px;
-    background-color: #FFABAB;
+    background-color: #edc6b1;
 }
 
-#search-input{
-    border-radius: 4px;
-}
 
 /* post_form.html 글 작성 */
 
@@ -81,16 +78,13 @@
     height: 100px;
 }
 
+
 /* 이미지 */
 .post_img{
     margin-top: 10px;
 }
 
-.detail-comments,
-.detail-hashtags{
+.detail-hashtag,
+.detail-comments{
     list-style: none;
-}
-
-.user-comment{
-    padding: 20px;
 }

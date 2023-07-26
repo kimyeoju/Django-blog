@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content%}
-{{ post.update_counter }}
 <div class="container">
     <div>
         <!-- 게시판 목록 버튼 -->
@@ -31,16 +30,70 @@
         <div class="d-flex justify-content-center">
             {% if post_imgfile %}
                     <div class="p-2">
-                        <img src="{{ post_imgfile.url }}" alt="게시물사진" width="500px" height="500px">
+                        <img src="{{ post_imgfile.url }}" alt="게시물사진" width="700px" height="500px">
                     </div>
                     {% endif %}
                 </div>
-                <p>{{ post_content }}</p>
+                <p class="mt-5 mb-5">{{ post_content }}</p>
     
-    
+                <!-- hashtags -->
+                <h3><img src="/static/img/hashtag2.png" alt="" width="30" height="30">HashTag</h3>
+                <form action="{% url 'blog:tag-write' pk=post_id %}" method="post">
+                    {% csrf_token %}
+                    {% if hashtag_form.errors %}
+                        {% with form=hashtag_form %}
+                            {% include 'blog/form_error.html' %}
+                        {% endwith %}
+                    {% else %}
+                        {{ hashtag_form.name }}
+                    {% endif %}
+                    <input class="btn btn-outline-secondary btn-sm" type="submit" value="등록">
+                </form>
+            
+                {% if hashtags %}
+                    <ul class="list-unstyled">
+                        {% for hashtag in hashtags %}
+                        <li class="col-sm">
+                            <img src="/static/img/hashtag2.png" alt="" width="20" height="15">{{ hashtag }}
+                            {% if hashtag.writer == request.user %}
+                                <form action="{% url 'blog:tag-delete' pk=hashtag.pk %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="submit" value="삭제" class="btn btn-outline-secondary btn-sm col-sm">
+                                </form>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <br>
+                    <p>작성된 해시태그가 없습니다.</p>
+                {% endif %}
+        </div>
+
+
         <!-- 댓글 작성 화면 -->
         <h3><img src="/static/img/comment.png" alt="" width="30" height="30">Comment</h3>
         <div class="container">
+            
+            <!-- comments -->
+            {% if comments %}
+            <ul class="detail-comments">
+                {% for comment in comments %}
+                <li class="user-comment"><img src="/static/img/user.png" alt="" width="30" height="25"> {{ comment.content }} | {{ comment.created_at|date:"Y-m-d" }} | {{ comment.writer }}
+                    {% if comment.writer == request.user %}
+                    <form action="{% url 'blog:cm-delete' pk=comment.pk %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="삭제" class='btn btn-outline-secondary btn-sm'>
+                    </form>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>코멘트가 없습니다.</p>
+            {% endif %}
+
+            <!-- 댓글 작성 -->
             <form class="comment-form" action="{% url 'blog:cm-write' pk=post_id %}" method="post">
                 {% csrf_token %}
                 {% if comment_form.errors %}
@@ -52,59 +105,8 @@
                 {% endif %}
                 <input class="btn btn-outline-secondary btn-sm" type="submit" value="등록">
             </form>
-        
-            <!-- comments -->
-            {% if comments %}
-                <ul class="detail-comments">
-                    {% for comment in comments %}
-                        <li class="user-comment"><img src="/static/img/user.png" alt="" width="30" height="25"> {{ comment.content }} | {{ comment.created_at|date:"Y-m-d" }} | {{ comment.writer }}
-                            {% if comment.writer == request.user %}
-                                <form action="{% url 'blog:cm-delete' pk=comment.pk %}" method="post">
-                                    {% csrf_token %}
-                                    <input type="submit" value="삭제" class='btn btn-outline-secondary btn-sm'>
-                                </form>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>코멘트가 없습니다.</p>
-            {% endif %}
         </div>
     
-        <!-- hashtags -->
-        <h3><img src="/static/img/hashtag.png" alt="" width="30" height="30">HashTag</h3>
-        <form action="{% url 'blog:tag-write' pk=post_id %}" method="post">
-            {% csrf_token %}
-            {% if hashtag_form.errors %}
-                {% with form=hashtag_form %}
-                    {% include 'blog/form_error.html' %}
-                {% endwith %}
-            {% else %}
-                {{ hashtag_form.name }}
-            {% endif %}
-            <input class="btn btn-outline-secondary btn-sm" type="submit" value="등록">
-        </form>
-    
-        {% if hashtags %}
-            <ul class="detail-hashtags">
-                {% for hashtag in hashtags %}
-                <li>
-                    <img src="/static/img/hashtag2.png" alt="" width="20" height="15">{{ hashtag }}
-                    {% if hashtag.writer == request.user %}
-                        <form action="{% url 'blog:tag-delete' pk=hashtag.pk %}" method="post">
-                            {% csrf_token %}
-                            <input type="submit" value="삭제" class="btn btn-outline-secondary btn-sm">
-                        </form>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <br>
-            <p>작성된 해시태그가 없습니다.</p>
-        {% endif %}
-</div>
 
 
 {% endblock %}

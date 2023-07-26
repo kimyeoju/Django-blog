@@ -19,11 +19,12 @@ class Index(View):
         paginator = Paginator(post,5)
         # paginator을 이용하여 요청된 페이지(page)에 해당되는 페이징 객체(page_obj)생성 -> 장고 내부적으로 데이터 전체를 조회하지 않고 해당 페이지의 데이터만 조회하도록 쿼리가 변경
         page_obj = paginator.get_page(page)
+        
         context = {
             # posts는 page_obj 즉 5페이지의 데이터 조회
-            'posts': page_obj,
             'title': 'Blog',
-            'post_obj': post
+            'posts': page_obj,
+            'post_obj': post,
         }
         return render(request, 'blog/post_list.html', context)
 
@@ -33,8 +34,8 @@ class Write(LoginRequiredMixin, View):
     def get(self, request):
         form = PostForm()
         context = {
+            'title': 'Blog',
             'form': form,
-            'title': 'Blog'
         }
         return render(request, 'blog/post_form.html', context)
     
@@ -48,7 +49,7 @@ class Write(LoginRequiredMixin, View):
             return redirect('blog:list')
         
         context = {
-            'form' : form
+            'form' : form,
         }
         return render(request, 'blog/post_form.html', context)
 
@@ -58,7 +59,7 @@ class DetailView(View):
     
     def get(self, request, pk):
         post = Post.objects.prefetch_related('comment_set', 'hashtag_set').get(pk=pk)
-        post.update_counter
+        post.update_counter # 조회수 올리기
         
         comments = post.comment_set.all()
         hashtags = post.hashtag_set.all()
@@ -87,24 +88,25 @@ class DetailView(View):
 # 글 수정
 class Update(View):
     def get(self, request, pk):
-        post = get_object_or_404(Post, pk=pk)
         # 조건을 만족하는 object가 있으면 해당 object를 리턴하고, 없으면 404처리 첫번째 인자 Post에서 두번째 인자 해당 아이디의 post객체를 가져오는 것 
+        post = get_object_or_404(Post, pk=pk)
         form = PostForm(initial={'title': post.title, 'content': post.content})
         context = {
-            'form': form,
-            'post': post,
+            'title':'Blog',
             # post객체 값을 넘겨주어야 더 정확함
-            'title':'Blog'
+            'post': post,
+            'form': form,
         }
         return render(request, 'blog/post_edit.html',context)
     
     def post(self,request, pk):
+        # 수정 할 객체를 불러옴
         post = get_object_or_404(Post, pk=pk)
-        form = PostForm(request.POST)
+        # 새롭게 사용자에게 수정 할 내용을 입력 받음
+        form = PostForm(request.POST, request.FILES, instance=post)
         
         if form.is_valid():
-            # 폼의 입력값을 얻고 싶은 경우는 form.cleaned_data
-            # form.cleaned_data로 접근하면 폼 인스턴스 내에서 clean함수를 통해 변환되었을 수도 있는 데이터를 가져오므로 좋은 접근
+            # 수정 할 객체(post)를 수정할 값(form으로 받은 데이터)으로 새롭게 넣어준 뒤(title,content)만 수정 가능하도록 할 것이기에 두 가지만 받음 -> 새롭게 수정된 객체를 다시 저장 -> 내용을 디비에 저장
             post.title = form.cleaned_data['title']
             post.content = form.cleaned_data['content']
             post.save()
@@ -112,8 +114,9 @@ class Update(View):
             # DetailView.get(self,request,post_id)로 정의했기 때문에 post_id로 attribute 선언해야함
         
         context = {
+            'title': 'Blog',
             'form': form,
-            'title': 'Blog'
+            'post': post,
         }
         return render(request, 'blog/post_edit.html', context)
 
